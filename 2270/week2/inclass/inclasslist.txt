@@ -1,0 +1,62 @@
+#include <iostream>
+
+using namespace std;
+#define DB_SIZE 10
+
+struct Node
+{
+    string name;        //name of the person
+    unsigned int phone; // phone number
+};
+
+class List
+{
+private:
+    Node *dataBase; //address where the Node list is going to be stored
+    int capacity;   //capacity of the list
+    int size;       // number of legit elements in the list
+public:
+    List();  //declarer
+    ~List(); //destroyer
+    void insert(Node data);
+    void traverse();
+};
+
+List::List()
+{
+    cout << "making a list babies" << endl;
+    dataBase = new Node[DB_SIZE];
+    size = 0;
+    capacity = DB_SIZE;
+}
+List::~List()
+{
+    cout << "thios list's days are over" << endl;
+    delete[] dataBase;
+    dataBase = 0;
+}
+void List::insert(Node data){
+    if (size < capacity) {
+        dataBase[size] = data;
+        size++;
+    } else{
+        cout << "shit full bruh" << endl;
+    }
+}
+
+void List::traverse(){
+    for(int i = 0; i < size; i++){
+        cout << i << " : " << dataBase[i].name << " : " << dataBase[i].phone << endl;
+    }
+}
+
+int main()
+{
+    List ll;
+    Node nn;
+    nn.name = "poggers";
+    nn.phone = 786844689;
+    ll.insert(nn);
+    ll.traverse();
+    return 0;
+}
